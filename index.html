@@ -19,9 +19,9 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
       text-align: center;
       padding: 20px;
+      overflow-x: hidden;
     }
 
     h1 {
@@ -35,6 +35,7 @@
 
     img {
       width: min(80%, 320px);
+      max-width: 90vw;
       height: auto;
       border-radius: 20px;
       box-shadow: 0 8px 25px rgba(0,0,0,0.3);
@@ -50,6 +51,8 @@
       font-size: clamp(1rem, 2.5vw, 1.2rem);
       cursor: pointer;
       transition: background 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      touch-action: manipulation;
     }
 
     button:hover {
@@ -65,6 +68,7 @@
       opacity: 0.8;
       border-radius: 50%;
       animation: fall 5s linear infinite;
+      pointer-events: none;
     }
 
     @keyframes fall {
@@ -77,7 +81,7 @@
       to { transform: scale(1.1); }
     }
 
-    /* Media Queries for extra responsiveness */
+    /* Responsive tweaks */
     @media (max-width: 768px) {
       body {
         padding: 15px;
@@ -88,7 +92,7 @@
       }
 
       button {
-        padding: 10px 20px;
+        padding: 10px 25px;
       }
     }
 
@@ -98,11 +102,13 @@
       }
 
       img {
-        width: 90%;
+        width: 85%;
       }
 
       button {
         width: 80%;
+        padding: 12px;
+        font-size: 1rem;
       }
     }
   </style>
@@ -113,7 +119,7 @@
 
   <img src="P1060391.JPG" alt="Birthday Photo">
 
-  <button onclick="playMusic()">Song🎵</button>
+  <button onclick="playMusic()">Song 🎵</button>
 
   <audio id="birthdaySong" src="Tumse Hi.mp3"></audio>
 
@@ -123,7 +129,7 @@
       const confetti = document.createElement('div');
       confetti.classList.add('confetti');
       confetti.style.left = Math.random() * 100 + 'vw';
-      confetti.style.backgroundColor = `hsl(${Math.random()*360}, 70%, 60%)`;
+      confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 60%)`;
       confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
       confetti.style.width = Math.random() * 8 + 5 + 'px';
       confetti.style.height = confetti.style.width;
@@ -132,7 +138,8 @@
 
     // Music player
     function playMusic() {
-      document.getElementById('birthdaySong').play();
+      const audio = document.getElementById('birthdaySong');
+      audio.play();
     }
   </script>
 
