@@ -1,38 +1,106 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Birthday Wishes          </title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Alex!</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #ffefd5;
-      color: #333;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+    * {
       margin: 0;
-      text-align: center;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
     }
-    .container {
-      background: #fff;
-      padding: 40px;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+
+    body {
+      background: linear-gradient(to bottom right, #ffecd2, #fcb69f);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
     }
+
     h1 {
+      font-size: 3rem;
       color: #ff4081;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+      margin-bottom: 20px;
+      animation: pop 1.2s ease-in-out infinite alternate;
+    }
+
+    img {
+      width: 300px;
+      height: auto;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 12px 25px;
+      background-color: #ff4081;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #e91e63;
+    }
+
+    /* Confetti styles */
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: #ff4081;
+      opacity: 0.8;
+      border-radius: 50%;
+      animation: fall 5s linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+    }
+
+    @keyframes pop {
+      from { transform: scale(1); }
+      to { transform: scale(1.1); }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Happy Birthday!</h1>
-    <p>Wishing you a day filled with happiness and a year filled with joy.</p>
-    <p>🎉🎂🎈</p>
-  </div>
+
+  <h1>🎉 Happy Birthday Alex! 🎂</h1>
+
+  <img src="P1060391.JPG" alt="Birthday Photo">
+
+  <button onclick="playMusic()">Play Birthday Song 🎵</button>
+
+  <audio id="birthdaySong" src="https://www2.cs.uic.edu/~i101/SoundFiles/StarWars60.wav"></audio>
+
+  <script>
+    // Confetti generator
+    for (let i = 0; i < 100; i++) {
+      const confetti = document.createElement('div');
+      confetti.classList.add('confetti');
+      confetti.style.left = Math.random() * 100 + 'vw';
+      confetti.style.backgroundColor = `hsl(${Math.random()*360}, 70%, 60%)`;
+      confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+      document.body.appendChild(confetti);
+    }
+
+    // Music player
+    function playMusic() {
+      document.getElementById('birthdaySong').play();
+    }
+  </script>
+
 </body>
 </html>
